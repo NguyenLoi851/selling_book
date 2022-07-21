@@ -1,0 +1,112 @@
+button {
+  outline: none;
+  border: none;
+  cursor: pointer;
+}
+
+.btn {
+  display: inline-block;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  border-radius: 4px;
+  text-align: center;
+  font-size: 14px;
+  line-height: 1.42857143;
+  border: 1px solid transparent;
+  padding: 6px 12px;
+  white-space: nowrap;
+  font-weight: 400;
+}
+
+.btn-primary {
+  background: var(--primary-color);
+  border-color: var(--primary-color);
+  color: var(--white-color);
+}
+
+.btn-primary:hover {
+  background: var(--l-orange-color);
+  border-color: var(--l-orange-color);
+}
+
+.btn-default{
+  background: var(--primary-color);
+  color: var(--white-color);
+}
+
+.btn-lg {
+  padding: 10px 32px;
+  font-size: 16px;
+  border-radius: 6px;
+  margin-bottom: 36px;
+}
+
+.btn-md{
+  font-size: 16px;
+  padding: 0 20px;
+  border-radius: 3px;
+  float: right;
+  position: relative;
+  margin: 7px;
+  font-weight: 400;
+  height: 45px;
+  line-height: 45px;
+}
+
+.btn-more {
+  border-radius: 4px;
+  background: var(--primary-color);
+  padding: 6px 20px;
+  color: #fff;
+  font-size: 13px;
+  text-transform: uppercase;
+}
+
+.btn-more:hover, .btn-default:hover {
+  background-color: var(--secondary-color);
+  color: var(--white-color);
+}
+
+.btn i{
+  padding-left: 8px;
+}
+
+.product-add{
+  margin-left: 10px;
+  height: 50px;
+  padding: 0 30px;
+  font-size: 14px;
+  font-weight: 700;
+  margin-right: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0;
+  background: var(--primary-color);
+  border-radius: 4px;
+  color: var(--white-color);
+  border: 2px solid var(--primary-color);
+  border-right-color: var(--black-21-color);
+  border-bottom-color: var(--black-21-color);
+}
+
+.product-add:hover, .product-add:active{
+  background-color: var(--secondary-color);
+}
+
+.product-add.btn-buy-disable {
+  pointer-events: none;
+  cursor: default;
+  opacity: 0.4;
+}
+
+.btn.btn-icon-center {
+  width: 100%;
+  max-width: calc(50% - 7px);
+  height: 36px;
+  text-align: center;
+  line-height: 24px;
+  color: #fff;
+  border: none;
+  border-radius: 3px;
+  font-size: 20px;
+}

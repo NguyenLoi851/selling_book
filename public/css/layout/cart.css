@@ -1,0 +1,13 @@
+.cart-title h1{
+    background: var(--white-color);
+    padding: 10px 15px 10px 15px;
+    border-bottom: 1px solid var(--e0-gray-color);
+    text-transform: uppercase;
+    color: var(--black-color);
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+
+.back:hover{
+    color:var(--primary-color);
+}
