@@ -23,6 +23,26 @@ class AdminServices extends MySqlConnect {
         parent::updateQuery();
     }
 
+    /**
+     * Kiểm tra tài khoản admin có trong database hay không
+     *
+     * @param String $username
+     * @param String $password  mã hash của mật khẩu
+     * @return true tài khoản có trong database
+     */
+    public function checkAccount($username, $password)
+    {
+        $query = "select * from admin where username = '$username' and password = '$password'";
+        parent::addQuerry($query);
+
+        $result = parent::executeQuery();
+        if (mysqli_fetch_array($result)) {
+            return True;
+        } else {
+            return False;
+        }
+    }
+
     public function getAllBanners(){
         $listBanner = array();
         $query = "select * from banner";

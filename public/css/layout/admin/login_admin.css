@@ -12,13 +12,13 @@ body {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  color: #191970;
+  color: var(--primary-color);
 }
 
 .login-box h1 {
   float: left;
   font-size: 40px;
-  border-bottom: 4px solid #191970;
+  border-bottom: 4px solid var(--primary-color);
   margin-bottom: 50px;
   padding: 13px;
 }
@@ -29,7 +29,7 @@ body {
   font-size: 20px;
   padding: 8px 0;
   margin: 8px 0;
-  border-bottom: 1px solid #191970;
+  border-bottom: 1px solid var(--primary-color);
 }
 
 .fa {
@@ -51,7 +51,7 @@ body {
   width: 100%;
   padding: 8px;
   color: #ffffff;
-  background: none #191970;
+  background: none var(--primary-color);
   border: none;
   border-radius: 6px;
   font-size: 18px;
