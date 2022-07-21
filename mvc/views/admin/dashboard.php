@@ -11,7 +11,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/selling-book/public/css/base.css" type="text/css">
-    <link rel="stylesheet" href="/selling-book/public/css/layout/dashboard.css" type="text/css">
+    <link rel="stylesheet" href="/selling-book/public/css/layout/admin/dashboard.css" type="text/css">
     <script src="https://kit.fontawesome.com/4326137641.js" crossorigin="anonymous"></script>
     <title>Dashboard</title>
 
@@ -26,22 +26,12 @@
                 <img src="public/images/logo/logo_icon.png" />
 
             </div>
-            <div class="search-box">
-                <form class="relative w100p">
-                    <label htmlFor="search" class="hidden"></label>
-                    <input class="search-text" name="search" id="search" type="search" placeholder="Tìm kiếm ..."></input>
-                    <button type="submit" class="search-btn absolute">
-                        <i class="fa fa-solid fa-magnifying-glass"></i>
-                    </button>
-                </form>
-            </div>
 
             <div class='time'> <?php
-
-                                $dt = new DateTime("now", new DateTimeZone('Asia/Ho_Chi_Minh'));
-                                echo 'Ngày hôm nay : ';
-                                echo  $dt->format('m/d/Y')
-                                ?></div>
+            $dt = new DateTime("now", new DateTimeZone('Asia/Ho_Chi_Minh'));
+            echo 'Ngày hôm nay : ';
+            echo  $dt->format('d/m/Y')
+            ?></div>
 
             <div class='right-items'>
                 <i style='vertical-align: middle; margin-right: 15px' class="fa fa-solid fa-bell fa-2x"></i>
