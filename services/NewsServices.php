@@ -2,11 +2,13 @@
 require_once ROOT . DS . 'services' . DS . 'MySqlConnect.php';
 require_once ROOT . DS . 'mvc' . DS . 'models' . DS . 'News.php';
 
-class NewsServices extends MySqlConnect {
+class NewsServices extends MySqlConnect
+{
     /**
      * @param News $news
      */
-    public function insert($news){
+    public function insert($news)
+    {
         $title = $news->getTitle();
         $content = $news->getContent();
         $image = $news->getImage();
@@ -22,22 +24,23 @@ class NewsServices extends MySqlConnect {
     /**
      * @param News $news
      */
-    public function getAll($param = 0){
+    public function getAll($param = 0)
+    {
         $listNews = array();
 
-        switch($param){
-            case 0:{
-                $query = "select * from news";
-                break;
-            }
-            case 1:{
-                $query = "select * from news order by createdAt desc";
-                break;
-            }
+        switch ($param) {
+            case 0: {
+                    $query = "select * from news";
+                    break;
+                }
+            case 1: {
+                    $query = "select * from news order by createdAt desc";
+                    break;
+                }
         }
         parent::addQuerry($query);
         $result = parent::executeQuery();
-        while($row = mysqli_fetch_array($result)){
+        while ($row = mysqli_fetch_array($result)) {
             $newsId = $row["ID"];
             $title = $row["title"];
             $content = $row["content"];
@@ -46,19 +49,20 @@ class NewsServices extends MySqlConnect {
             $createdAt = $row["createdAt"];
             $description = $row["description"];
 
-            $news = new News($newsId,$title,$description, $content, $image, $adminId, $createdAt);
+            $news = new News($newsId, $title, $description, $content, $image, $adminId, $createdAt);
             array_push($listNews, $news);
         }
 
         return $listNews;
     }
 
-    public function getById($newsId){
-        $query = "select * from news where ID = ".$newsId;
+    public function getById($newsId)
+    {
+        $query = "select * from news where ID = " . $newsId;
         parent::addQuerry($query);
         $result = parent::executeQuery();
 
-        if($row = mysqli_fetch_array($result)){
+        if ($row = mysqli_fetch_array($result)) {
             $newsId = $row["ID"];
             $title = $row["title"];
             $content = $row["content"];
@@ -67,16 +71,16 @@ class NewsServices extends MySqlConnect {
             $createdAt = $row["createdAt"];
             $description = $row["description"];
 
-            $news = new News($newsId,$title,$description, $content, $image, $adminId, $createdAt);
+            $news = new News($newsId, $title, $description, $content, $image, $adminId, $createdAt);
             return $news;
         }
 
         return null;
-
     }
 
-    public function delete($newsId){
-        $query = "delete from news where ID = ".$newsId;
+    public function delete($newsId)
+    {
+        $query = "delete from news where ID = " . $newsId;
         parent::addQuerry($query);
         parent::updateQuery();
     }
@@ -84,7 +88,8 @@ class NewsServices extends MySqlConnect {
     /**
      * @param News $news
      */
-    public function update($news){
+    public function update($news)
+    {
         $newsId = $news->getNewsId();
         $title = $news->getTitle();
         $description = $news->getDescription();

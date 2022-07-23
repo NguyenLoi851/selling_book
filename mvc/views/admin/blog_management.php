@@ -1,5 +1,23 @@
 <?php
 
+require_once ROOT . DS . 'services' . DS . 'NewsServices.php';
+$service = new NewsServices();
+$news = $service->getAll();
+
+
+
+$newsId = "";
+$title = "";
+$content = "";
+$image = "";
+$adminId = "";
+$createdAt = "";
+$description = "";
+
+
+
+
+
 ?>
 
 <!DOCTYPE html>
@@ -11,6 +29,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../public/css/base.css" type="text/css">
+    <link rel="stylesheet" href="../public/css/layout/admin/account_management.css" type="text/css">
     <link rel="stylesheet" href="/selling-book/public/css/layout/admin/dashboard.css" type="text/css">
     <script src="https://kit.fontawesome.com/4326137641.js" crossorigin="anonymous"></script>
     <title>Dashboard</title>
@@ -60,6 +79,52 @@
         <div class='content'>
             <div style='margin-top:65px'>
                 <h1>Quản lý blog </h1>
+
+
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <hr>
+                <br><br>
+
+                <table style="width:100%; border:1px solid black">
+                    <tr>
+                        <th>ID</th>
+                        <th>Tiêu đề</th>
+                        <th>Admin ID</th>
+                        <th>Tạo lúc</th>
+
+                    </tr>
+                    <?php
+
+                    function DeleteUser($u)
+                    {
+                        // $g = new GuestServices();
+                        // $deleteUser = $g->delete($u);
+                        // echo $deleteUser;
+                    }
+                    foreach ($news as $n) {
+
+
+                    ?>
+                        <tr style="text-align: center">
+                            <td><?php echo $n->getNewsId() ?></td>
+                            <td><?php echo $n->getTitle() ?></td>
+                            <td><?php echo $n->getAdminId() ?></td>
+                            <td><?php echo $n->getCreatedAt() ?></td>
+
+
+
+
+                            <!-- <td><button class="btn" onclick=<?php DeleteUser($u->getUsername()) ?>><i style='vertical-align: middle' class="fa fa-solid fa-trash fa-2x"></i></button></td> -->
+                        </tr>
+                    <?php } ?>
+                </table>
+
+                <button class="btn btn-primary" style='margin-top: 20px' onclick={renderForm}>Tạo tài khoản mới</button>
+
             </div>
 
         </div>

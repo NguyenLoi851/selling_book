@@ -42,17 +42,17 @@ class GuestServices extends MySqlConnect
     {
 
         // delete row with user_name in cart_book table
-        $cart_id = self::getCartID($username);
-        $query = "delete from cart_book
-                  where cartId = " . $cart_id;
-        parent::addQuerry($query);
-        parent::updateQuery();
+        // $cart_id = self::getCartID($username);
+        // $query = "delete from cart_book
+        //           where cartId = " . $cart_id;
+        // parent::addQuerry($query);
+        // parent::updateQuery();
 
         // next, delete row with user_name in cart table
-        $query = "delete from cart
-                  where username = '" . $username . "'";
-        parent::addQuerry($query);
-        parent::updateQuery();
+        // $query = "delete from cart
+        //           where username = '" . $username . "'";
+        // parent::addQuerry($query);
+        // parent::updateQuery();
 
         // next, delete row with user_name in guest table
         $query = "delete from guest
@@ -375,7 +375,7 @@ class GuestServices extends MySqlConnect
 
             // get and add book price to total price
             $book = $bookServices->getById($bookId);
-            $totalPrice += ($book->getPrice() - $book->getPrice() * $book->getDiscount() / 100 )* $quantity ;
+            $totalPrice += ($book->getPrice() - $book->getPrice() * $book->getDiscount() / 100) * $quantity;
         }
         $totalPrice += 30000;
         // update total price of bill

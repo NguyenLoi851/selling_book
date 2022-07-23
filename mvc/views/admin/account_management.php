@@ -6,6 +6,7 @@ $service = new GuestServices();
 $guests = $service->getAll();
 
 
+
 $user = "";
 $phone = "";
 $name = "";
@@ -136,14 +137,29 @@ foreach ($guests as $g) {
                         <th>Thêm</th>
                     </tr>
                     <?php
+
+                    function DeleteUser($u)
+                    {
+                        // $g = new GuestServices();
+                        // $deleteUser = $g->delete($u);
+                        // echo $deleteUser;
+                    }
                     foreach ($users as $u) {
+
+
                     ?>
                         <tr style="text-align: center">
-                            <td><?php echo "<a ". "href='/selling-book/admin/order-management/?username=" . $u->getUsername() . "'>" . $u->getUsername() ."</a>" ?></td>
+                            <td><?php echo "<a " . "href='/selling-book/admin/order-management/?username=" . $u->getUsername() . "'>" . $u->getUsername() . "</a>" ?></td>
                             <td><?php echo $u->getName() ?></td>
                             <td><?php echo $u->getPhoneNumber() ?></td>
                             <td><?php echo $u->getAddress() ?></td>
-                            <td><button class="btn" onclick=""><i style='vertical-align: middle' class="fa fa-solid fa-trash fa-2x"></i></button></td>
+                            <td class="delete text-right">
+                                <form action="library/guest/delete_product.php" method="post" id=<?php echo "form-delete" . $bookId; ?>>
+                                    <input type="text" name="product_id" value="<?php echo $bookId; ?>" style="display: none">
+                                    <a href="javascript:void(0);" onclick=<?php echo "remove_form(" . $bookId  . ")"; ?> class="click-delete">Xóa</a>
+                                </form>
+                            </td>
+                            <td><button class="btn" onclick=<?php DeleteUser($u->getUsername()) ?>><i style='vertical-align: middle' class="fa fa-solid fa-trash fa-2x"></i></button></td>
                         </tr>
                     <?php } ?>
                 </table>

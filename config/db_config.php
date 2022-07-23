@@ -1,6 +1,6 @@
 <?php
 
-define('DB_NAME', 'selling_book');
+define('DB_NAME', 'selling-book');
 // <<<<<<< HEAD
 define('DB_USER', 'root');
 define('DB_PASSWORD', '');

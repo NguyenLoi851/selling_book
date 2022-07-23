@@ -31,7 +31,12 @@
   height: 65px;
   position: fixed;
   display: flex;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 99;
   border-bottom: 1px solid #04aa6d;
+  background: white;
 }
 .dashboard .content {
   margin-left: 250px;
