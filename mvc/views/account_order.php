@@ -123,9 +123,11 @@ $currentUserPhone = $currentUser->getPhoneNumber();
 
                             ?>
                                 <tr>
-                                    <td class="item text-left"><a href=<?php echo ROOT . DS . "product" . DS . $bookId; ?>>
+                                    <td class="item text-left">
+                                        <a href= <?php echo DS . $path_project . "/product" . DS . $bookId; ?>>
                                             <strong title="<?php echo $bookName; ?>"><?php echo $bookName; ?></strong>
-                                        </a></td>
+                                        </a>
+                                    </td>
                                     <td class="item text-center">
                                         <?php echo $bookId; ?>
                                     </td>

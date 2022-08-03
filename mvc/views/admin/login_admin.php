@@ -35,7 +35,7 @@ if (array_key_exists("username", $_POST)) {
         session_start();
         $_SESSION['username'] = $username;
         $_SESSION['password'] = $password;
-    }else{
+    } else {
         $exitsAccountMessage = "Thông tin tài khoản không chính xác";
     }
 }
@@ -63,6 +63,10 @@ if (isset($_SESSION['username']) && isset($_SESSION['password'])) {
     <form action="" method="POST">
         <div class="login-box">
             <h1>Login Admin</h1>
+            <?php if (isset($exitsAccountMessage)) { ?>
+                <div style="color: #dd4b39;font-size: 16px;font-weight: 500;padding: 6px 0;margin: auto;">
+                <?php echo $exitsAccountMessage; ?></div>
+            <?php } ?>
             <div class="textbox">
                 <i class="fa fa-user" aria-hidden="true"></i>
                 <input type="text" placeholder="username" name="username" value="">

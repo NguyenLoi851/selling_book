@@ -161,7 +161,7 @@ $bannerList = $bannerStore->getAllBanners();
                             <div class="product-container m-b20">
                                 <div class="product-img relative">
                                     <div class="product-sale absolute">
-                                        <span class="sale-icon">- <?php echo $book->getDiscount(); ?> %</span>
+                                        <span class="sale-icon">-<?php echo $book->getDiscount(); ?>%</span>
                                     </div>
                                     <div class="img relative">
                                         <a href=<?php echo "/" . $path_project . "/product" . "/" . $book->getBookId(); ?>>

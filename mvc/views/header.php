@@ -74,14 +74,14 @@ $url = isset($_GET["url"]) ? $_GET["url"] : "/";
                         <a class="flex f-space_between f-align_center" href=<?php echo "/" . $path_project . "/cart" ?>>
                             <div class="cart-icon relative">
                                 <i class="fa-solid fa-cart-shopping"></i>
-                                <span class="quantity absolute"><?php
+                                <span class="quantity absolute" id="pro-quantity"><?php
                                                                 if (!isset($_SESSION['username'])) echo "0";
                                                                 else echo $productsNumber; ?></span>
                             </div>
 
                             <div class="cart-info hidden-md">
                                 <h2>Giỏ hàng</h2>
-                                <span><?php
+                                <span id="pro-quantity-text"><?php
                                         if (!isset($_SESSION['username'])) echo "0";
                                         else echo $productsNumber; ?> sản phẩm</span>
                             </div>

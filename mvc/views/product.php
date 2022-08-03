@@ -3,6 +3,11 @@ require_once ROOT . DS . "services" . DS . "BookServices.php";
 require_once ROOT . DS . 'services' . DS . 'EvaluateServices.php';
 require_once ROOT . DS . 'services' . DS . 'GuestServices.php';
 require_once ROOT . DS . "library" . DS . "format.php";
+require_once ROOT . DS . "public" . DS . "xml" . DS . "book_info.php";
+
+//load file xml
+$xml=simplexml_load_string($myXMLData) or die("Error: Cannot create object");
+
 
 $bookStore = new BookServices();
 $evaluateServices = new EvaluateServices();
@@ -25,6 +30,8 @@ $bookSameAuthor = $bookStore->getBookByAuthor($bookAuthor);
 $bookRelated = $bookStore->getBookByCategory($bookId);
 $listComment = $evaluateServices->getAll($bookId);
 
+
+//load file tài nguyên xml
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -37,7 +44,7 @@ $listComment = $evaluateServices->getAll($bookId);
     <link rel="shortcut icon" href="/selling-book/public/images/logo/logo_icon.png" type="image/x-icon">
     <link rel="stylesheet" href="/selling-book/public/css/base.css" type="text/css">
     <link rel="stylesheet" href="/selling-book/public/css/layout/product.css" type="text/css">
-    
+
     <script src="https://cdn.tiny.cloud/1/9038dr0d32vvyxk56tg57fbo4w5hgp16g574iyezusedlm3f/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
     <script>
         tinymce.init({
@@ -86,15 +93,15 @@ $listComment = $evaluateServices->getAll($bookId);
                     <div class="s_product-subtitle m-t10">
                         <div class="box-info flex m-b10">
                             <div class="w50p m-b10 p-r10">
-                                <author>Tác giả</author>
+                                <strong><?php echo $xml->author; ?></strong>
                                 <span><?php echo $bookAuthor; ?></span>
                             </div>
                             <div class="w50p m-b10 p-r10">
-                                <publisher>Nhà xuất bản</publisher>
+                                <strong><?php echo $xml->publisher; ?></strong>
                                 <span><?php echo $bookPublisher; ?></span>
                             </div>
                             <div class="w50p m-b10 p-r10">
-                                <publishYear>Năm xuất bản</publishYear>
+                                <strong><?php echo $xml->publishYear; ?></strong>
                                 <span><?php echo $bookPublishYear; ?></span>
                             </div>
 
@@ -122,7 +129,7 @@ $listComment = $evaluateServices->getAll($bookId);
 
                     </div>
 
-                    <form method="POST" onsubmit="return validCart()">
+                    <!-- <form method="POST" onsubmit="return validCart(e)"> -->
                         <div class="s_product-action flex f-align_center">
                             <div class="select-quantity">
                                 <input type="button" value="-" class="qty-minus">
@@ -131,27 +138,15 @@ $listComment = $evaluateServices->getAll($bookId);
                             </div>
 
                             <div class="s_product-btn ">
-                                <button class="btn product-add <?php if ($bookAvailable == 0) echo "btn-buy-disable" ?>">Thêm vào giỏ</button>
+                                <button onclick="validCart()" class="btn product-add <?php if ($bookAvailable == 0) echo "btn-buy-disable" ?>">Thêm vào giỏ</button>
                             </div>
 
 
                         </div>
 
 
-                    </form>
-                    <?php
-                    if (array_key_exists('product-number', $_POST)) {
-                        require_once ROOT . DS . 'services' . DS . 'GuestServices.php';
-                        $username = $_SESSION['username'];
-                        $quantity = $_POST['product-number'];
-                        $guestServices = new GuestServices();
-                        $listProducts = $guestServices->getListCartBooks($_SESSION['username']);
-                        if (!in_array($book, $listProducts)) {
-                            $guestServices->insertBookToCart($username, $book, $quantity);
-                        }
-                        header("refresh: 0");
-                    }
-                    ?>
+                    <!-- </form> -->
+                    
                     <div class="s_product-meta">
                         <p>danh mục :
                             <span class="s_product-category">
@@ -356,12 +351,24 @@ $listComment = $evaluateServices->getAll($bookId);
             if (session == "") {
                 alert("Vui lòng đăng nhập để sử dụng giỏ hàng!")
                 return false;
+            } else {
+                const quantity = document.getElementById("qty-product").value;
+                const cartBook = 'bookId=' + <?php echo $bookId ?>  + '&product-number=' + quantity + '&username=' + '<?php echo $_SESSION['username']; ?>';
+                console.log(cartBook);
+                const xhttp = new XMLHttpRequest();
+                xhttp.onload = function() {
+                    document.getElementById("pro-quantity").innerHTML = this.responseText;
+                    document.getElementById("pro-quantity-text").innerHTML = this.responseText + " sản phẩm";
+                    window.scrollTo(0, 0);
+                }
+                xhttp.open("POST", "func_add_product.php");
+                xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded")
+                xhttp.send(cartBook);
             }
 
-            return true;
         }
     </script>
-    
+
 </body>
 
 </html>

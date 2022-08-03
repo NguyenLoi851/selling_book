@@ -5,7 +5,7 @@ require_once ROOT . DS . 'library' . DS . 'format.php';
 
 
 $pageSize = 12;
-$searchText = $_POST['search'];
+$searchText = htmlspecialchars($_POST['search']);
 $request = parse_url($_SERVER['REQUEST_URI']);
 if (isset($request['query'])) {
     parse_str($request['query'], $results);
@@ -69,7 +69,7 @@ $totalPage = ceil($searchTotalRecord / $pageSize);
                     <div class="w100p flex mt10">
                         <div class="grid-r2 list-pro-title p-lr15 pb-16">
                             <span>
-                                Kết quả tìm kiếm <?php echo $searchText; ?>
+                                Kết quả tìm kiếm `<?php echo $searchText; ?>`
                             </span>
                         </div>
                         <div class="grid-r2 list-pro-filtes">
