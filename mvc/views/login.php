@@ -2,7 +2,7 @@
 
 
 if (array_key_exists("username", $_POST)) {
-    $username = $_POST['username'];
+    $username = htmlspecialchars($_POST['username']);
     $password = sha1($_POST['password']);
     require_once ROOT . DS . 'services' . DS . 'GuestServices.php';
     $service = new GuestServices();

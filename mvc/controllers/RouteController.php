@@ -27,6 +27,13 @@ class RouteController
             return;
         }
 
+        // Điều hướng tới HomePage nếu url = "/"
+        if (str_contains($this->_url, "func_")) {
+            require_once ROOT . DS . 'mvc' . DS . 'controllers' . DS . 'FunctionController.php';
+            $this->_dispath = new FunctionController($this->_url);
+            return;
+        }
+
         //Lấy danh sách tham số ở trên url
         $urlArray = explode("/", $this->_url);
         $controller = $urlArray[0];

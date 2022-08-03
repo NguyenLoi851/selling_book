@@ -1,5 +1,19 @@
 <?php
+require_once ROOT . DS . 'services' . DS . 'AdminServices.php';
 
+if (!isset($_SESSION)) {
+    ob_start();
+    session_start();
+}
+if (!isset($_SESSION['username']) || $_SESSION['username'] == '') {
+    header("Location: login-admin");
+}else{
+    $service = new AdminServices();
+    $checker = $service->checkAccount($_SESSION['username'], $_SESSION['password']);
+    if(!$checker){
+        header("Location: login-admin");
+    }
+}
 ?>
 
 <!DOCTYPE html>
