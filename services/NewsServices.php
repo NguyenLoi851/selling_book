@@ -47,9 +47,9 @@ class NewsServices extends MySqlConnect
             $image = $row["image"];
             $adminId = $row["adminId"];
             $createdAt = $row["createdAt"];
-            $description = $row["description"];
+            // $description = $row["description"];
 
-            $news = new News($newsId, $title, $description, $content, $image, $adminId, $createdAt);
+            $news = new News($newsId, $title, $content, $image, $adminId, $createdAt);
             array_push($listNews, $news);
         }
 

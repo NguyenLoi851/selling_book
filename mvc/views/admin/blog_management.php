@@ -114,16 +114,12 @@ $description = "";
                             <td><?php echo $n->getTitle() ?></td>
                             <td><?php echo $n->getAdminId() ?></td>
                             <td><?php echo $n->getCreatedAt() ?></td>
-
-
-
-
-                            <!-- <td><button class="btn" onclick=<?php DeleteUser($u->getUsername()) ?>><i style='vertical-align: middle' class="fa fa-solid fa-trash fa-2x"></i></button></td> -->
                         </tr>
                     <?php } ?>
                 </table>
+                <button class="btn btn-primary" style='margin-top: 20px'>Tạo blog mới</button>
 
-                <button class="btn btn-primary" style='margin-top: 20px' onclick={renderForm}>Tạo tài khoản mới</button>
+
 
             </div>
 

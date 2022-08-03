@@ -153,12 +153,7 @@ foreach ($guests as $g) {
                             <td><?php echo $u->getName() ?></td>
                             <td><?php echo $u->getPhoneNumber() ?></td>
                             <td><?php echo $u->getAddress() ?></td>
-                            <td class="delete text-right">
-                                <form action="library/guest/delete_product.php" method="post" id=<?php echo "form-delete" . $bookId; ?>>
-                                    <input type="text" name="product_id" value="<?php echo $bookId; ?>" style="display: none">
-                                    <a href="javascript:void(0);" onclick=<?php echo "remove_form(" . $bookId  . ")"; ?> class="click-delete">Xóa</a>
-                                </form>
-                            </td>
+
                             <td><button class="btn" onclick=<?php DeleteUser($u->getUsername()) ?>><i style='vertical-align: middle' class="fa fa-solid fa-trash fa-2x"></i></button></td>
                         </tr>
                     <?php } ?>

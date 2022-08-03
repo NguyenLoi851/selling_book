@@ -112,7 +112,7 @@ foreach ($banners as $b) {
                     <?php } ?>
                 </table>
 
-                <button class="btn btn-primary" style='margin-top: 20px' onclick={renderForm}>Tạo tài khoản mới</button>
+                <button class="btn btn-primary" style='margin-top: 20px' onclick={renderForm}>Thêm banner mới</button>
 
             </div>
 

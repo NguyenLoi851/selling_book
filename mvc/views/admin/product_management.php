@@ -1,5 +1,35 @@
 <?php
+require_once ROOT . DS . 'services' . DS . 'BookServices.php';
 
+$service = new BookServices();
+$books = $service->getAllSortByTimeDesc($param = NO_CATEGORY['id'], $pageIndex = 1, $pageSize = 100);
+
+$title = '';
+$author = '';
+$price = '';
+
+if (array_key_exists("title", $_POST)) {
+    $title = strtolower($_POST['title']);
+}
+if (array_key_exists("author", $_POST)) {
+    $author = strtolower($_POST['author']);
+}
+if (array_key_exists("price", $_POST)) {
+    $price = strtolower($_POST['price']);
+}
+
+$listBooks = array();
+
+foreach ($books as $b) {
+    $btitle = strtolower($b->getTitle());
+    $bauthor = strtolower($b->getAuthor());
+    $bprice = strtolower($b->getPrice());
+    if (($title == "" || strpos($btitle, $title) !== false) && ($author == "" || strpos($bauthor, $author) !== false) &&
+        ($price == "" || strpos($bprice, $price) !== false)
+    ) {
+        array_push($listBooks, $b);
+    }
+}
 ?>
 
 <!DOCTYPE html>
@@ -60,7 +90,65 @@
         <div class='content'>
             <div style='margin-top:65px'>
                 <h1>Quản lý sản phẩm </h1>
+
+                <form action="" method="post">
+                    <div>
+                        <div style="width:28%; float:left; height: 70px;">
+                            <p>Tên sách</p>
+                            <input class="input1" type="text" name="title">
+                        </div>
+
+                        <div style="width:28%; float:left; height: 70px;">
+                            <p>Tác giả</p>
+                            <input class="input1" type="text" name="author">
+                        </div>
+                        <div style="width:28%; float:left; height: 70px;">
+                            <p>Giá bán</p>
+                            <input class="input1" type="text" name="price">
+                        </div>
+                        <div style="width:16%; float:left; height: 70px;">
+                            <input class="btn" type="submit" value="Tìm kiếm">
+                        </div>
+
+
+
+                    </div>
+                </form>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <hr>
+                <br><br>
+
+                <table style="width:100%; border:1px solid black">
+                    <tr>
+                        <th>Tên sách</th>
+                        <th>Tác giả</th>
+                        <th>Giá bán</th>
+                        <th>Thêm</th>
+                    </tr>
+                    <?php
+
+                    foreach ($listBooks as $b) {
+
+
+                    ?>
+                        <tr style="text-align: center">
+                            <td><?php echo $b->getTitle() ?></td>
+                            <td><?php echo $b->getAuthor() ?></td>
+                            <td><?php echo $b->getPrice() ?></td>
+
+                            <td><button class="btn"><i style='vertical-align: middle' class="fa fa-solid fa-trash fa-2x"></i></button></td>
+                        </tr>
+                    <?php } ?>
+                </table>
+
+                <button class="btn btn-primary" style='margin-top: 20px' onclick={renderForm}>Thêm sách mới </button>
+
             </div>
+
         </div>
 
 
